@@ -2,7 +2,7 @@
   "name": "greetings",
   "version": "1.0.0",
   "description": "",
-  "main": "../fuunction/greet.js",
+  "main": "greet.js",
   "scripts": {
     "test": "test"
   },
