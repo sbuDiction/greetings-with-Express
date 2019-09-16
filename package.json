@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sbuDiction/greetings.git"
+    "url": "git+https://github.com/sbuDiction/Greetings-with-Express.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sbuDiction/greetings/issues"
+    "url": "https://github.com/sbuDiction/Greetings-with-Express/issues"
   },
-  "homepage": "https://github.com/sbuDiction/greetings#readme",
+  "homepage": "https://github.com/sbuDiction/Greetings-with-Express#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
