@@ -1,5 +1,5 @@
 const assert = require("assert");
-const Greet = require("../fuunction/greet");
+const Greet = require("../greet");
 
 describe("Greetings Language Tests", function() {
   it("should be able to greet a person in Zulu language ", function() {
