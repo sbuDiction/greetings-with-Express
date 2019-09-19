@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" href="asserts/greet.css" />-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>Greetings</title>
+</head>
+
+<body class="p-3 mb-2 bg-white text-dark">
+    <!-- this is the header section-->
+    {{!-- {{{body}}} --}}
+    <div class="container">
+        <div class="row">
+            <div class="co12">
+                <h3>
+                    People Greeted List
+                    <small class="text-muted">The data is displayed in a table to make it easy for analysis</small>
+                </h3>
+
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Names</th>
+                            <th>greeted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each allnames}}
+                        <tr>
+                            <td>{{timesta}}</td>
+                            <td><a href="/user" class="badge badge-primary">{{name}}</a></td>
+                            {{!-- <span style='font-size:100px;'>&#128514;</span> --}}
+                            <td>greeted &#128514;</td>
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>

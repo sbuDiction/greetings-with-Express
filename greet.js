@@ -1,65 +1,73 @@
 module.exports = function() {
   var nameStorage = {};
+  let languageList = [];
+  let str = "";
+  let nameList = [];
+  let userCounter = 0;
 
-  function greetMe(userName, language) {
-    let regex = /\d/;
-    var upperCaseLetters = userName.toUpperCase();
-    var number = regex.test(upperCaseLetters);
-    if (!userName) {
-      return "Please input name and select language!";
-    } else if (!language) {
-      return "Please select language!";
+  const greetMe = (name, language) => {
+    // let count = 0;
+    let toCase = name[0].toUpperCase() + name.slice(1);
+    if (language == "English") {
+      languageList.push({
+        languageType: "Hello, ",
+        user: toCase
+      });
+    } else if (language == "Zulu") {
+      languageList.push({
+        languageType: "Sawubona, ",
+        user: toCase,
+        timestamp: new Date()
+      });
+    } else if (language == "Afrikaans") {
+      languageList.push({
+        languageType: "Hallo, ",
+        user: toCase
+      });
+    } else if (language == "Tsonga") {
+      languageList.push({
+        languageType: "Avuxeni, ",
+        user: toCase
+      });
+    } else if (language == "Xhosa") {
+      languageList.push({
+        languageType: "Molo, ",
+        user: toCase
+      });
     }
+    nameList.push({
+      name: toCase,
+      count: userCounter++
+    });
+  };
 
-    if (number === false) {
-      if (nameStorage[upperCaseLetters] === undefined) {
-        nameStorage[upperCaseLetters] = 0;
-      }
+  const getEngLanguage = () => {
+    for (let x = 0; x < languageList.length; x++) {
+      const element = languageList[x].languageType + languageList[x].user;
+      str = element;
     }
-
-    if (language === "English" && allLetter(upperCaseLetters) === true) {
-      return "Hello, " + upperCaseLetters;
-    } else if (
-      language === "Afrikaans" &&
-      allLetter(upperCaseLetters) === true
-    ) {
-      return "Hallo, " + upperCaseLetters;
-    }
-    if (language === "Zulu" && allLetter(upperCaseLetters) === true) {
-      return "Sawubona, " + upperCaseLetters;
-    } else {
-      return "Please use letters only! ";
-    }
-  }
+    return str;
+  };
+  const getAllNames = () => {
+    return languageList;
+  };
 
   function keepCount() {
-    var countName = Object.keys(nameStorage);
-    // console.log(countName.length);
-    return countName.length;
+    for (let x = 0; x < languageList.length; x++) {
+      const element = languageList[x].user;
+      return languageList.length;
+    }
   }
 
   function getName() {
-    return nameStorage;
+    return nameList;
   }
 
-  function clear() {
-    nameStorage = {};
-  }
-
-  function allLetter(inputtxt) {
-    var letters = /^[A-Za-z]+$/;
-    if (inputtxt.match(letters)) {
-      return true;
-    } else {
-    //   alert("invalid charecters entered!");
-      return false;
-    }
-  }
   return {
     greet: greetMe,
     count: keepCount,
     objectName: getName,
-    remove: clear,
-    onlyLetters: allLetter
+    getEngLanguage,
+    getAllNames
   };
 };
