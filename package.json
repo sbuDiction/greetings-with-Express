@@ -2,9 +2,9 @@
   "name": "greetings",
   "version": "1.0.0",
   "description": "",
-  "main": "greet.js",
+  "main": "app.js",
   "scripts": {
-    "test": "test"
+    "test": "testnp"
   },
   "repository": {
     "type": "git",
