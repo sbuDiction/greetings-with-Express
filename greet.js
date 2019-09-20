@@ -1,12 +1,16 @@
 module.exports = function() {
-  var nameStorage = {};
+  // var nameStorage = {};
   let languageList = [];
   let str = "";
   let nameList = [];
   let userCounter = 0;
+  console.log(nameList);
+  console.log(userCounter);
 
   const greetMe = (name, language) => {
     // let count = 0;
+    console.log(name);
+    
     let toCase = name[0].toUpperCase() + name.slice(1);
     if (language == "English") {
       languageList.push({
@@ -17,7 +21,6 @@ module.exports = function() {
       languageList.push({
         languageType: "Sawubona, ",
         user: toCase,
-        timestamp: new Date()
       });
     } else if (language == "Afrikaans") {
       languageList.push({
@@ -35,10 +38,21 @@ module.exports = function() {
         user: toCase
       });
     }
-    nameList.push({
-      name: toCase,
-      count: userCounter++
-    });
+    for (let x = 0; x < nameList.length; x++) {
+      if (nameList[x].name === toCase) {
+        nameList[x].count++;
+        // console.log(nameList[x].count);
+
+        nameList.push({
+          name:
+            toCase[
+              {
+                count: userCounter
+              }
+            ]
+        });
+      }
+    }
   };
 
   const getEngLanguage = () => {
@@ -62,12 +76,16 @@ module.exports = function() {
   function getName() {
     return nameList;
   }
+  const eachUser = user => {
+    return languageList.filter(list => list.user === user);
+  };
 
   return {
     greet: greetMe,
     count: keepCount,
     objectName: getName,
     getEngLanguage,
-    getAllNames
+    getAllNames,
+    eachUser
   };
 };

@@ -1,1 +1,2 @@
-$('.toast').toast(option)
+// $('.toast').toast(option)
+$('.alert').alert()

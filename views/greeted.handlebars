@@ -21,10 +21,10 @@
             <div class="co12">
                 <h3>
                     People Greeted List
-                    <small class="text-muted">The data is displayed in a table to make it easy for analysis</small>
+                    <small class="text-muted">Click the name to get more info</small>
                 </h3>
 
-                <table class="table table-dark">
+                <table class="table table-sm table-dark">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -34,11 +34,10 @@
                     </thead>
                     <tbody>
                         {{#each allnames}}
-                        <tr>
+                        <tr class="bg-success">
                             <td>{{timesta}}</td>
-                            <td><a href="/user" class="badge badge-primary">{{name}}</a></td>
-                            {{!-- <span style='font-size:100px;'>&#128514;</span> --}}
-                            <td>greeted &#128514;</td>
+                            <td><a href="/user/{{name}}" name="client" class="badge badge-primary">{{name}}</a></td>
+                            <td>greeted! &#128514;</td>
                         </tr>
                         {{/each}}
 
@@ -48,4 +47,5 @@
         </div>
 
     </div>
+    <script src="../public/javaScript/greetings.js"></script>
 </body>

@@ -84,13 +84,18 @@
     <div class="fixed-bottom">
       <div class="card text-center">
         <h5 class="card-title">Number of people greeted</h5>
-        <p class="card-text">Counter: {{counter}}</p>
+        {{!-- <p class="card-text">Counter: {{counter}}</p> --}}
+        <button type="button" class="btn btn-primary">
+          Counter <span class="badge badge-light">{{counter}}</span>
+          <span class="sr-only">unread messages</span>
+        </button>
         <p class="card-text">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <small class="text-muted">Greeted names counter</small>
         </p>
       </div>
     </div>
   </div>
+  <script src="../public/javaScript/greetings.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

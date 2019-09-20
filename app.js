@@ -57,6 +57,16 @@ app.get("/greeted", function(req, res) {
   res.render("greeted", { allnames: renderEachName });
 });
 
+app.get("/user/:userName", function(req, res) {
+  const nameSelected = req.body.userName;
+  let renderName = instanceForGreet.eachUser(nameSelected);
+  for (const iterator of renderName) {
+    iterator.name = iterator.user;
+  }
+
+  res.render("user", { isUser: req.params.userName });
+});
+
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
 });
