@@ -1,7 +1,6 @@
 const express = require("express");
 var flash = require("connect-flash");
 var session = require("express-session");
-// var express = require("express");
 var cookieParser = require("cookie-parser");
 var toastr = require("express-toastr");
 const app = express();
@@ -18,8 +17,8 @@ app.use(session({
     saveUninitialized: true,
     resave: true
 }));
-app.use(flash());
-app.use(toastr());
+// app.use(flash());
+// app.use(toastr());
 
 app.use(express.static("public"));
 var bodyParser = require("body-parser");

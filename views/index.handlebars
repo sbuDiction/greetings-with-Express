@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-  <%= req.toastr.render() %>
+  {{!-- <%= req.toastr.render() %> --}}
   <title>Greetings</title>
 </head>
 
@@ -60,7 +60,7 @@
 
                 <option selected="">Select Language</option>
                 {{#each dropdown}}
-                <option class="badge badge-success" value="{{this}}" name="language">{{this}}</option>
+                <option value="{{this}}" name="language">{{this}}</option>
                 {{/each}}
               </select>
             </div>
