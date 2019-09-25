@@ -1,17 +1,26 @@
 const express = require("express");
+var flash = require("connect-flash");
+var session = require("express-session");
+// var express = require("express");
+var cookieParser = require("cookie-parser");
+var toastr = require("express-toastr");
 const app = express();
 const exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 5000;
-const pug = require("pug");
 const path = require("path");
 
-const moment = require("moment");
 const greetings = require("./greet");
 const instanceForGreet = greetings();
-moment().format();
-// require("bootstrap");
-// global.jQuery = require('jquery');
-// require("bootstrap-loader");
+
+app.use(cookieParser('secret'));
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+app.use(flash());
+app.use(toastr());
+
 app.use(express.static("public"));
 var bodyParser = require("body-parser");
 
@@ -25,7 +34,6 @@ const handlebarSetup = exphbs({
   partialsDir: "./views/partials",
   viewPath: "./views",
   layoutsDir: "./views/layouts"
-  // helpers
 });
 
 app.engine("handlebars", handlebarSetup);
@@ -35,38 +43,27 @@ app.get("/", function(req, res) {
   res.render("index", {
     title: "Greetings",
     dropdown: ["Zulu", "English", "Xhosa", "Afrikaans", "Tsonga"],
-    name: instanceForGreet.getEngLanguage(),
+    name: instanceForGreet.objectName(),
     counter: instanceForGreet.count()
   });
-  console.log(instanceForGreet.getEngLanguage());
-  console.log(instanceForGreet.objectName());
 });
-
 app.post("/greet", function(req, res) {
   instanceForGreet.greet(req.body.nameInput, req.body.language);
-
   res.redirect("/");
 });
-
 app.get("/greeted", function(req, res) {
-  var renderEachName = instanceForGreet.getAllNames();
-  for (const iterator of renderEachName) {
-    iterator.name = iterator.user;
-  }
-
-  res.render("greeted", { allnames: renderEachName });
+  res.render("greeted", { allnames: instanceForGreet.names() });
 });
-
 app.get("/user/:userName", function(req, res) {
-  const nameSelected = req.body.userName;
-  let renderName = instanceForGreet.eachUser(nameSelected);
-  for (const iterator of renderName) {
-    iterator.name = iterator.user;
-  }
+  let name = req.params.userName;
+  let names = instanceForGreet.eachUser(req.params.userName);
 
-  res.render("user", { isUser: req.params.userName });
+  res.render("user", {
+    isUser: name,
+    count: instanceForGreet.countFor(name)
+  });
+  console.log(instanceForGreet.countFor(req.body.userName));
 });
-
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
 });

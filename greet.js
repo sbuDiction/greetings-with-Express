@@ -1,91 +1,79 @@
 module.exports = function() {
-  // var nameStorage = {};
-  let languageList = [];
-  let str = "";
+  let nameStorage = {};
   let nameList = [];
-  let userCounter = 0;
-  console.log(nameList);
-  console.log(userCounter);
+  let toCase = "";
+  let languageType = "";
 
   const greetMe = (name, language) => {
-    // let count = 0;
-    console.log(name);
-    
-    let toCase = name[0].toUpperCase() + name.slice(1);
-    if (language == "English") {
-      languageList.push({
-        languageType: "Hello, ",
-        user: toCase
-      });
-    } else if (language == "Zulu") {
-      languageList.push({
-        languageType: "Sawubona, ",
-        user: toCase,
-      });
-    } else if (language == "Afrikaans") {
-      languageList.push({
-        languageType: "Hallo, ",
-        user: toCase
-      });
-    } else if (language == "Tsonga") {
-      languageList.push({
-        languageType: "Avuxeni, ",
-        user: toCase
-      });
-    } else if (language == "Xhosa") {
-      languageList.push({
-        languageType: "Molo, ",
-        user: toCase
-      });
-    }
-    for (let x = 0; x < nameList.length; x++) {
-      if (nameList[x].name === toCase) {
-        nameList[x].count++;
-        // console.log(nameList[x].count);
-
-        nameList.push({
-          name:
-            toCase[
-              {
-                count: userCounter
-              }
-            ]
-        });
+    toCase = name[0].toUpperCase() + name.slice(1);
+    let regex = /\d/;
+    var number = regex.test(toCase);
+    if (number === false) {
+      if (nameStorage[toCase] === undefined) {
+        nameStorage[toCase] = 0;
+        nameList.push({ name: toCase, count: 1 });
+      } else {
+        for (let x = 0; x < nameList.length; x++) {
+          if (toCase === nameList[x].name) {
+            nameList[x].count++;
+          }
+        }
       }
     }
+    if (language == "English") {
+      languageType = "Hello, ";
+    } else if (language == "Zulu") {
+      languageType = "Sawubona, ";
+    } else if (language == "Afrikaans") {
+      languageType = "Hallo, ";
+    } else if (language == "Tsonga") {
+      languageType = "Avuxeni, ";
+    } else if (language == "Xhosa") {
+      languageType = "Molo, ";
+    }
+    toCase = languageType + toCase;
   };
 
-  const getEngLanguage = () => {
-    for (let x = 0; x < languageList.length; x++) {
-      const element = languageList[x].languageType + languageList[x].user;
-      str = element;
-    }
-    return str;
-  };
+  console.log(nameStorage);
+
   const getAllNames = () => {
-    return languageList;
+    return nameStorage;
   };
 
-  function keepCount() {
-    for (let x = 0; x < languageList.length; x++) {
-      const element = languageList[x].user;
-      return languageList.length;
+  const count = () => {
+    let counter = Object.keys(nameStorage);
+    return counter.length;
+  };
+
+  const names = () => {
+    return nameList;
+  };
+
+  const countFor = name => {
+    let counted = 0;
+    for (let x = 0; x < nameList.length; x++) {
+      if (name === nameList[x].name) {
+        counted = nameList[x].count;
+      }
     }
-  }
+    return counted;
+  };
 
   function getName() {
-    return nameList;
+    return toCase;
   }
-  const eachUser = user => {
-    return languageList.filter(list => list.user === user);
+
+  const eachUser = name => {
+    return nameList.filter(list => list.name === name);
   };
 
   return {
     greet: greetMe,
-    count: keepCount,
     objectName: getName,
-    getEngLanguage,
     getAllNames,
-    eachUser
+    eachUser,
+    names,
+    count,
+    countFor
   };
 };
