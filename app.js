@@ -1,3 +1,4 @@
+"use strict";
 const express = require("express");
 var flash = require("connect-flash");
 var session = require("express-session");
@@ -7,16 +8,35 @@ const app = express();
 const exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+const pg = require("pg");
+const Pool = pg.Pool;
 
-const greetings = require("./greet");
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+  useSSL = true;
+}
+
+const connectionString =
+  process.env.DATABASE_URL ||
+  "postgresql://diction:Sbu19970823@localhost:5432/greetings";
+
+const pool = new Pool({
+  connectionString,
+  ssl: useSSL
+});
+
+const greetings = require("./greet-manager/greet");
 const instanceForGreet = greetings();
 
-app.use(cookieParser('secret'));
-app.use(session({
-    secret: 'secret',
+app.use(cookieParser("secret"));
+app.use(
+  session({
+    secret: "secret",
     saveUninitialized: true,
     resave: true
-}));
+  })
+);
 // app.use(flash());
 // app.use(toastr());
 
@@ -47,7 +67,7 @@ app.get("/", function(req, res) {
   });
 });
 app.post("/greet", function(req, res) {
-  instanceForGreet.greet(req.body.nameInput, req.body.language);
+  instanceForGreet.addName(req.body.nameInput, req.body.language);
   res.redirect("/");
 });
 app.get("/greeted", function(req, res) {
@@ -63,6 +83,7 @@ app.get("/user/:userName", function(req, res) {
   });
   console.log(instanceForGreet.countFor(req.body.userName));
 });
+
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
 });
