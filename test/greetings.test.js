@@ -4,6 +4,7 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 const connectionString =
+  process.env.DATABASE_URL ||
   "postgresql://diction:19970823@localhost:5432/greetings";
 
 const pool = new Pool({
