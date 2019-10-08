@@ -19,7 +19,7 @@ if (process.env.DATABASE_URL && !local) {
 
 const connectionString =
   process.env.DATABASE_URL ||
-  "postgresql://diction:Sbu19970823@localhost:5432/greetings";
+  "postgresql://diction:19970823@localhost:5432/greetings";
 
 const pool = new Pool({
   connectionString,
