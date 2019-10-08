@@ -7,8 +7,15 @@ const connectionString =
   process.env.DATABASE_URL ||
   "postgresql://diction:19970823@localhost:5432/greetings";
 
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+  useSSL = true;
+}
+
 const pool = new Pool({
-  connectionString
+  connectionString,
+  ssl: useSSL
 });
 
 describe("Greet testing", function() {
