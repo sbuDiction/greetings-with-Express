@@ -5,6 +5,9 @@ env:
 node_js:
   - "v9.11.2"
 
+services:
+  - postgresql
+
 before_script:
   - psql -c 'create database  greetings_tests;' -U postgres
   - psql -U postgres -d greetings_tests -a -f database.sql
