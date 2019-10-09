@@ -5,11 +5,11 @@ env:
 node_js:
   - "v9.11.2"
 
-  before_script:
+before_script:
   - psql -c 'create database  greetings_tests;' -U postgres
   - psql -U postgres -d greetings_tests -a -f database.sql
-
-  addons:
-    apt:
+ 
+addons:
+  apt:
     packages:
     - postgresql-server-dev-9.2
