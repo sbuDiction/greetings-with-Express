@@ -1,6 +1,6 @@
 body {
-  /* background-image: url("../pictures/nameDatabase.jpg"); */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
+  background-image: url("./nameDatabase.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
 }

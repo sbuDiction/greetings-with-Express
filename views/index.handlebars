@@ -64,7 +64,7 @@
           <div class="row">
             <div class="col-6">
               <div class="form-label-group usernameInput">
-                <input class="form-control" id="input" type="text" name="nameInput" autofocus="">
+                <input class="form-control" id="input" type="text" name="nameInput" autofocus="" required name=un>
                 <label for="text"></label>
                 <span class="badge badge-dark">Enter</span>
                 <span class="badge badge-warning">name</span>
@@ -73,32 +73,42 @@
               </div>
 
             </div>
-            <div class="col-6-sm">
-              <button class="btn btn-outline-success d-flex justify-content-between" id="collectData" type="submit">
-                Submit form
-              </button>
-            </div>
+
             <div class="col-6 language">
-              <select class="custom-select custom-select-sm" name="language">
+              <select class="custom-select custom-select-sm" name="language" name=un>
 
                 <option selected="">Select Language</option>
                 {{#each dropdown}}
-                <option value="{{this}}">{{this}}</option>
+                <option required value="{{this}}">{{this}}</option>
                 {{/each}}
               </select>
+              <div class="form-label-group usernameInput">
+                <label for="text"></label>
+                <span class="badge badge-dark">Select</span>
+                <span class="badge badge-warning">language</span>
+                {{!-- <span class="badge badge-success">to</span> --}}
+                {{!-- <span class="badge badge-danger">Greet</span> --}}
+              </div>
+            </div>
+            <div style="padding-left: 1%;padding-top:4%" class="col-6-sm">
+              <button class="btn btn-outline-success d-flex justify-content-between" id="collectData" type="submit">
+
+                Greet
+              </button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="row" style="padding-top: 5%;padding-bottom: 5%">
-      <div class="col-6">
-        <button class="btn btn-outline-danger" type="button">
-          Reset Button
-        </button>
+    <form action="" method="POST">
+      <div class="row" style="padding-top: 1%;padding-bottom: 2%;padding-left: 40%">
+        <div class="col-6">
+          <button class="btn btn-outline-danger" type="button">
+            Reset app
+          </button>
+        </div>
       </div>
-    </div>
-
+    </form>
     {{!-- display section --}}
     <div class="">
       <div style="display: " class="alert alert-primary" role="alert">

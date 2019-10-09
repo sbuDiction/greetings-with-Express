@@ -1,6 +1,6 @@
 "use strict";
 const express = require("express");
-var flash = require("connect-flash");
+var flash = require("express-flash");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 var toastr = require("express-toastr");
@@ -40,7 +40,6 @@ app.use(
     resave: true
   })
 );
-// app.use(flash());
 // app.use(toastr());
 
 app.use(express.static("public"));
@@ -65,6 +64,8 @@ app.get("/", Routes.index);
 app.post("/greet", Routes.addName);
 app.get("/greeted", Routes.greeted);
 app.get("/user/:userName", Routes.countFor);
+
+app.use(flash());
 
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
