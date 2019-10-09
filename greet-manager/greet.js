@@ -2,7 +2,7 @@ module.exports = function Greetings(pool) {
   let toCase = "";
   let languageType = "";
 
-  async function addName(name, language) {
+  async function add(name, language) {
     toCase = name[0].toUpperCase() + name.slice(1);
     let regex = /\d/;
     let number = regex.test(toCase);
@@ -57,6 +57,7 @@ module.exports = function Greetings(pool) {
 
   async function all() {
     let names = await pool.query("SELECT * FROM greetings;");
+    // console.log(names);
     return names.rows;
   }
 
@@ -66,7 +67,8 @@ module.exports = function Greetings(pool) {
 
   async function keepCount() {
     let counter = await pool.query("SELECT COUNT(*) FROM greetings;");
-    return counter.rows;
+    let count = counter.rows[0].count;
+    return count;
   }
 
   async function countFor(name) {
@@ -75,12 +77,9 @@ module.exports = function Greetings(pool) {
     for (let x = 0; x < nameList.rows.length; x++) {
       let counter = nameList.rows[x].username;
       if (name === counter) {
-        console.log(counter, "step 1");
-
-        counted = nameList.rows[x].counttime;
+        let newNum = nameList.rows[x].counttime;
+        counted = newNum;
       }
-      console.log(counter, "step 2");
-      console.log(name, "step 3");
     }
     return counted;
   }
@@ -100,7 +99,8 @@ module.exports = function Greetings(pool) {
 
   async function eachUser(username) {
     let nameList = await pool.query("SELECT * FROM greetings;");
-    return nameList.filter(list => list.rows.username === username);
+    let newArray = nameList.rows;
+    return newArray.filter(list => list.rows === username);
   }
 
   async function clearData() {
@@ -109,7 +109,7 @@ module.exports = function Greetings(pool) {
   }
 
   return {
-    add: addName,
+    add,
     names: all,
     hello: greet,
     count: keepCount,

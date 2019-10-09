@@ -3,9 +3,8 @@ const Greetings = require("../greet-manager/greet");
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const connectionString =
-  process.env.DATABASE_URL ||
-  "postgresql://diction:19970823@localhost:5432/greetings";
+const connectionString = process.env.DATABASE_URL || 'postgresql://diction:19970823@localhost:5432/greetings_tests';
+
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -87,15 +86,9 @@ describe("Greet testing", function() {
       await instanceOfGreet.add("sbu", "Zulu");
       await instanceOfGreet.add("diction", "Zulu");
       let counter = await instanceOfGreet.count();
-      assert.deepEqual(counter, [{ count: "2" }]);
+      assert.deepEqual(counter, 2);
     });
-    it("Should be able to show how many users have been greeted in the app ", async function() {
-      let instanceOfGreet = Greetings(pool);
-      await instanceOfGreet.add("sbu", "Zulu");
-      await instanceOfGreet.add("diction", "Zulu");
-      let counter = await instanceOfGreet.count();
-      assert.deepEqual(counter, [{ count: "2" }]);
-    });
+
     describe("User counter Testing", function() {
       it("Should be able to show the counter for each user that how many times there were greeted ", async function() {
         let instanceOfGreet = Greetings(pool);

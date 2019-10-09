@@ -26,8 +26,11 @@ const pool = new Pool({
   ssl: useSSL
 });
 
+const greetRoute = require("./greetRoutes");
 const greetings = require("./greet-manager/greet");
-const instanceForGreet = greetings();
+
+const instanceForGreet = greetings(pool);
+const Routes = greetRoute(instanceForGreet);
 
 app.use(cookieParser("secret"));
 app.use(
@@ -58,31 +61,10 @@ const handlebarSetup = exphbs({
 app.engine("handlebars", handlebarSetup);
 app.set("view engine", "handlebars");
 
-app.get("/", function(req, res) {
-  res.render("index", {
-    title: "Greetings",
-    dropdown: ["Zulu", "English", "Xhosa", "Afrikaans", "Tsonga"],
-    name: instanceForGreet.objectName(),
-    counter: instanceForGreet.count()
-  });
-});
-app.post("/greet", function(req, res) {
-  instanceForGreet.addName(req.body.nameInput, req.body.language);
-  res.redirect("/");
-});
-app.get("/greeted", function(req, res) {
-  res.render("greeted", { allnames: instanceForGreet.names() });
-});
-app.get("/user/:userName", function(req, res) {
-  let name = req.params.userName;
-  let names = instanceForGreet.eachUser(req.params.userName);
-
-  res.render("user", {
-    isUser: name,
-    count: instanceForGreet.countFor(name)
-  });
-  console.log(instanceForGreet.countFor(req.body.userName));
-});
+app.get("/", Routes.index);
+app.post("/greet", Routes.addName);
+app.get("/greeted", Routes.greeted);
+app.get("/user/:userName", Routes.countFor);
 
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
