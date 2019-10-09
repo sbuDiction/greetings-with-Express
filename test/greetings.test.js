@@ -19,7 +19,7 @@ const pool = new Pool({
 
 describe("Greet testing", function() {
   beforeEach(async function() {
-    await pool.query("DELETE FROM greetings;");
+    // await pool.query("DELETE FROM greetings;");
     // await pool.query("delete from userName;");
   });
 
