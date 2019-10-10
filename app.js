@@ -63,6 +63,7 @@ app.set("view engine", "handlebars");
 app.get("/", Routes.index);
 app.post("/greet", Routes.addName);
 app.get("/greeted", Routes.greeted);
+app.get("/delete", Routes.delet);
 app.get("/user/:userName", Routes.countFor);
 
 app.use(flash());

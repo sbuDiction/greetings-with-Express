@@ -83,19 +83,6 @@ module.exports = function Greetings(pool) {
     }
     return counted;
   }
-  // console.log(nameStorage);
-
-  // const getAllNames = () => {
-  //   return nameStorage;
-  // };
-
-  // const names = () => {
-  //   return nameList;
-  // };
-
-  // function getName() {
-  //   return toCase;
-  // }
 
   async function eachUser(username) {
     let nameList = await pool.query("SELECT * FROM greetings;");

@@ -35,10 +35,17 @@ module.exports = function(instanceForGreet) {
     console.log(names);
     res.render("greeted", { allnames: names });
   }
+
+  async function delet(req, res) {
+    await instanceForGreet.delete();
+    req.flash("info", "App has been reseted!");
+    res.redirect("/");
+  }
   return {
     index,
     addName,
     countFor,
-    greeted
+    greeted,
+    delet
   };
 };
