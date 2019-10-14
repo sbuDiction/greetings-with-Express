@@ -14,11 +14,19 @@ module.exports = function(instanceForGreet) {
   }
 
   async function addName(req, res) {
-    if (req.body.language) {
-      await instanceForGreet.add(req.body.nameInput, req.body.language);
-    } else {
+    let name = req.body.nameInput;
+    let regex = /\d/;
+    let test = regex.test(name);
+    if (test === true) {
       instanceForGreet.clearGreeting();
-      req.flash("info", "Please select Language!");
+      req.flash("info", "Please use letters only!");
+    } else {
+      if (req.body.language) {
+        await instanceForGreet.add(name, req.body.language);
+      } else {
+        instanceForGreet.clearGreeting();
+        req.flash("info", "Please select Language!");
+      }
     }
     res.redirect("/");
   }
