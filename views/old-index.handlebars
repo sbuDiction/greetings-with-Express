@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148798236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148798236-1');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="/stylesheets/file.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{!-- <%= req.toastr.render() %> --}}
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KMMV9KJ');</script>
+  <!-- End Google Tag Manager -->
+  <title>Greetings</title>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMMV9KJ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- this is the header section-->
+  <div class="app-container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/greeted">Greeted</a>
+          </li>
+
+        </ul>
+        <h3 style="padding-left: ">
+          Greetings<small class="text-muted">With Express js</small>
+        </h3>
+        <form action="/greet" method="post">
+          <div class="row">
+            <div class="col-12-sm">
+              <div class="form-label-group usernameInput">
+                <input class="form-control" id="input" type="text" name="nameInput" autofocus="" required name=un>
+                <label for="text"></label>
+                <span class="badge badge-dark">Enter</span>
+                <span class="badge badge-warning">name</span>
+                <span class="badge badge-success">to</span>
+                <span class="badge badge-danger">Greet</span>
+              </div>
+
+              <select class="custom-select custom-select-sm" name="language">
+                <option value="">Select Language</option>
+                {{#each dropdown}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+              <div class="form-label-group usernameInput">
+                <label for="text"></label>
+                <span class="badge badge-dark">Select</span>
+                <span class="badge badge-warning">language</span>
+              </div>
+            </div>
+            {{!-- use this --}}
+            <div class="col-6-sm">
+              <button class="btn btn-outline-success d-flex justify-content-between" id="collectData" type="submit">
+                Greet
+              </button>
+            </div>
+        </form>
+
+        <form action="/delete" method="get">
+          {{!-- <div class="row" style="padding-top: 1%;padding-bottom: 2%;padding-left: 40%"> --}}
+          <div class="col-6-sm">
+            <button class="btn btn-outline-danger" type="submit">
+              Reset app
+            </button>
+          </div>
+          {{!-- </div> --}}
+        </form>
+      </div>
+    </div>
+    {{!-- display section --}}
+    <div class="">
+      <div id="greet" style="display: none;lert alert-primary" class="greetMsg" role="alert">
+        <span style="padding-left: 39%">{{name}}</span>
+      </div>
+      <div id="alert" style="display: none;lert alert-primary" class="red" role="alert">
+        <span style="padding-left: 35%">{{messages.reset}}</span>
+      </div>
+      <div id="warning" style="display: none;lert alert-primary" class="warning" e="alert">
+        <span style="padding-left: 35%">{{messages.info}}</span>
+      </div>
+    </div>
+    <div class="card text-center">
+      <h5 class="card-title">Number of people greeted</h5>
+      {{!-- <p class="card-text">Counter: {{counter}}</p> --}}
+      <button type="button" class="btn btn-primary">
+        Counter <span class="badge badge-light">{{count}}</span>
+        <span class="sr-only">unread messages</span>
+      </button>
+      <p class="card-text">
+        <small class="text-muted">Greeted names counter</small>
+      </p>
+    </div>
+  </div>
+  {{!-- footer section --}}
+  <div class="fixed-bottom">
+
+  </div>
+  </div>
+  <script src="/javaScript/greetings.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+</body>

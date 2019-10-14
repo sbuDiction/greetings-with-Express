@@ -1,5 +1,5 @@
 body {
-  /* background-image: url("./nameDatabase.jpg"); */
+  background-image: url("./Solid-Black-HD-Background-.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
@@ -7,12 +7,39 @@ body {
 
 .red {
   color: red;
+  font-size: xx-large;
 }
 
 .greetMsg {
   color: green;
+  font-size: xx-large;
+  padding-top: 5px;
 }
 
 .warning {
   color: brown;
+  font-size: xx-large;
+}
+
+.app-container {
+  width: 700px;
+  margin: auto;
+  border: 3px rgba(0, 226, 56, 0.904);
+  height: 500px;
+}
+
+.dropdown {
+  padding-top: 15px;
+}
+
+.greet {
+  padding-top: 15px;
+}
+
+.reset {
+  padding-top: 15px;
+}
+
+.count {
+  padding-top: 15px;
 }

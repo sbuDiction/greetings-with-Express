@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148798236-1"></script>
   <script>
@@ -34,7 +38,7 @@
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-KMMV9KJ');</script>
   <!-- End Google Tag Manager -->
-  <title>Greetings</title>
+  <title>Document</title>
 </head>
 
 <body>
@@ -42,106 +46,113 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMMV9KJ" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <!-- this is the header section-->
-  <div class="container">
+
+  <div class="app-container">
     <div class="row">
       <div class="col-12">
         <ul class="nav nav-tabs">
-          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="/greeted">Greeted</a>
+            <a class="nav-link active" href="/">Home</a>
           </li>
           <li class="nav-item">
-            {{!-- <a class="nav-link" href="/counter">Counter</a> --}}
-          </li>
-          <li class="nav-item">
-            {{!-- <a class="nav-link" href="/counter/user">Users</a> --}}
+            <a class="nav-link text-white" href="/greeted">Greeted</a>
           </li>
         </ul>
-        <h3 style="padding-left: ">
-          Greetings<small class="text-muted">With Express js</small>
-        </h3>
-        <form action="/greet" method="post">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-label-group usernameInput">
-                <input class="form-control" id="input" type="text" name="nameInput" autofocus="" required name=un>
+        <div class="row justify-content-sm-center">
+          <div class="col-12-sm">
+            <h3>
+              Greetings<small class="text-muted"> With Express js</small>
+            </h3>
+          </div>
+        </div>
+        <div class="row justify-content-sm-center">
+          <div class="col-6-sm ">
+            <form action="/greet" method="post">
+              <div class="form-label-group usernameInput justify-content-sm-center">
+                <input class="form-control justify-content-sm-center" id="input" type="text" name="nameInput"
+                  autofocus="" required name=un>
                 <label for="text"></label>
                 <span class="badge badge-dark">Enter</span>
                 <span class="badge badge-warning">name</span>
                 <span class="badge badge-success">to</span>
                 <span class="badge badge-danger">Greet</span>
               </div>
-
-            </div>
-
-            <div class="col-6 language">
-              <select class="custom-select custom-select-sm" name="language" name=un>
-
-                <option value="">Select Language</option>
-                {{#each dropdown}}
-                <option value="{{this}}">{{this}}</option>
-                {{/each}}
-              </select>
-              <div class="form-label-group usernameInput">
-                <label for="text"></label>
-                <span class="badge badge-dark">Select</span>
-                <span class="badge badge-warning">language</span>
-                {{!-- <span class="badge badge-success">to</span> --}}
-                {{!-- <span class="badge badge-danger">Greet</span> --}}
-              </div>
-            </div>
-            <div style="padding-left: 1%;padding-top:4%" class="col-6-sm">
-              <button class="btn btn-outline-success d-flex justify-content-between" id="collectData" type="submit">
-
-                Greet
-              </button>
+          </div>
+        </div>
+        <div class="row dropdown justify-content-sm-center">
+          <div class="col-6-sm">
+            <select class="custom-select custom-select-sm " name="language">
+              <option value="">Select Language</option>
+              {{#each dropdown}}
+              <option value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+            <div class="form-label-group usernameInput">
+              <label for="text"></label>
+              <span class="badge badge-dark">Select</span>
+              <span class="badge badge-warning">language</span>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <form action="/delete" method="get">
-      <div class="row" style="padding-top: 1%;padding-bottom: 2%;padding-left: 40%">
-        <div class="col-6-sm">
-          <button class="btn btn-outline-danger" type="submit">
-            Reset app
-          </button>
         </div>
-      </div>
-    </form>
-    {{!-- display section --}}
-    <div class="">
-      <div id="greet" style="display: none;lert alert-primary" class="greetMsg" role="alert">
-        <span style="padding-left: 39%">{{name}}</span>
-      </div>
-      <div id="alert" style="display: none;lert alert-primary" class="red" role="alert">
-        <span style="padding-left: 35%">{{messages.reset}}</span>
-      </div>
-      <div id="warning" style="display: none;lert alert-primary" class="warning"e="alert">
-        <span style="padding-left: 35%">{{messages.info}}</span>
-      </div>
-    </div>
-    {{!-- footer section --}}
-    <div class="fixed-bottom">
-      <div class="card text-center">
-        <h5 class="card-title">Number of people greeted</h5>
-        {{!-- <p class="card-text">Counter: {{counter}}</p> --}}
-        <button type="button" class="btn btn-primary">
-          Counter <span class="badge badge-light">{{count}}</span>
-          <span class="sr-only">unread messages</span>
-        </button>
-        <p class="card-text">
-          <small class="text-muted">Greeted names counter</small>
-        </p>
+        <div class="row greet justify-content-sm-center">
+          <div class="col-6-sm">
+            <button class="btn btn-outline-success justify-content-sm-center" id="collectData" type="submit">
+              Greet
+            </button>
+          </div>
+        </div>
+        </form>
+        <div class="row reset justify-content-sm-center">
+          <div class="col-6-sm">
+            <form action="/delete" method="get">
+              <button class="btn btn-outline-danger" type="submit">
+                Reset app
+              </button>
+            </form>
+          </div>
+        </div>
+        {{!-- <div class="">
+          <div id="greet" style="display: none;lert alert-primary" class="greetMsg" role="alert">
+            <span style="padding-left: 39%">{{name}}</span>
+          </div>
+          <div id="alert" style="display: none;lert alert-primary" class="red" role="alert">
+            <span style="padding-left: 35%">{{messages.reset}}</span>
+          </div>
+          <div id="warning" style="display: none;lert alert-primary" class="warning" e="alert">
+            <span style="padding-left: 35%">{{messages.info}}</span>
+          </div>
+        </div> --}}
+
+        <div class="row count justify-content-sm-center">
+          <div class="col-6-sm justify-content-sm-center">
+            {{!-- <h5 class="text-white justify-content-sm-center">Number of people greeted</h5> --}}
+            <textareae type="textarea" class="btn btn-primary justify-content-sm-center">
+              Counter <span class="badge badge-light justify-content-sm-center">{{count}}</span>
+              </textarea>
+              <p class="card-text">
+                <small class="text-white text-white">Greeted names counter</small>
+              </p>
+          </div>
+        </div>
+        <div class="row justify-content-sm-center">
+          <div class="col-10-sm">
+            <span class="justify-content-sm-center greetMsg" tyle="padding-left: 39%;">{{name}}</span>
+          </div>
+        </div>
+        <div class="row justify-content-sm-center">
+          <div class="col-10-sm">
+            <span class="justify-content-sm-center red" tyle="padding-left: 39%;">{{messages.reset}}</span>
+          </div>
+        </div>
+        <div class="row justify-content-sm-center">
+          <div class="col-10-sm">
+            <span class="justify-content-sm-center warning" tyle="padding-left: 39%;">{{messages.info}}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <script src="/javaScript/greetings.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+
 </body>
+
+</html>
