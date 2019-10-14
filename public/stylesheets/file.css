@@ -1,6 +1,18 @@
 body {
-  background-image: url("./nameDatabase.jpg");
+  /* background-image: url("./nameDatabase.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
+}
+
+.red {
+  color: red;
+}
+
+.greetMsg {
+  color: green;
+}
+
+.warning {
+  color: brown;
 }

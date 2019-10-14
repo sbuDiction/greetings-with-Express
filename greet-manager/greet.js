@@ -1,6 +1,11 @@
 module.exports = function Greetings(pool) {
   let toCase = "";
+  let greeting = "";
   let languageType = "";
+
+  const clearGreeting = () => {
+    greeting = "";
+  };
 
   async function add(name, language) {
     toCase = name[0].toUpperCase() + name.slice(1);
@@ -52,17 +57,16 @@ module.exports = function Greetings(pool) {
     } else if (language == "Xhosa") {
       languageType = "Molo, ";
     }
-    toCase = languageType + toCase;
+    greeting = languageType + toCase;
   }
 
   async function all() {
     let names = await pool.query("SELECT * FROM greetings;");
-    // console.log(names);
     return names.rows;
   }
 
   const greet = () => {
-    return toCase;
+    return greeting;
   };
 
   async function keepCount() {
@@ -91,12 +95,14 @@ module.exports = function Greetings(pool) {
   }
 
   async function clearData() {
-    let clear = await pool.query("DELETE * FROM greetings;");
+    let clear = await pool.query("DELETE FROM greetings;");
+    clearGreeting();
     return clear.rows;
   }
 
   return {
     add,
+    clearGreeting,
     names: all,
     hello: greet,
     count: keepCount,

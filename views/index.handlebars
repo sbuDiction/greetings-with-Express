@@ -13,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="../public/stylesheets/file.css">
+  <link rel="stylesheet" href="/stylesheets/file.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   {{!-- <%= req.toastr.render() %> --}}
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -77,9 +78,9 @@
             <div class="col-6 language">
               <select class="custom-select custom-select-sm" name="language" name=un>
 
-                <option selected="">Select Language</option>
+                <option value="">Select Language</option>
                 {{#each dropdown}}
-                <option required value="{{this}}">{{this}}</option>
+                <option value="{{this}}">{{this}}</option>
                 {{/each}}
               </select>
               <div class="form-label-group usernameInput">
@@ -103,7 +104,7 @@
     <form action="/delete" method="get">
       <div class="row" style="padding-top: 1%;padding-bottom: 2%;padding-left: 40%">
         <div class="col-6-sm">
-          <button class="btn btn-outline-danger" type="button">
+          <button class="btn btn-outline-danger" type="submit">
             Reset app
           </button>
         </div>
@@ -111,8 +112,14 @@
     </form>
     {{!-- display section --}}
     <div class="">
-      <div style="display: " class="alert alert-primary" role="alert">
-        <span style="padding-left: 30%">{{name}}</span>
+      <div id="greet" style="display: none;lert alert-primary" class="greetMsg" role="alert">
+        <span style="padding-left: 39%">{{name}}</span>
+      </div>
+      <div id="alert" style="display: none;lert alert-primary" class="red" role="alert">
+        <span style="padding-left: 35%">{{messages.reset}}</span>
+      </div>
+      <div id="warning" style="display: none;lert alert-primary" class="warning"e="alert">
+        <span style="padding-left: 35%">{{messages.info}}</span>
       </div>
     </div>
     {{!-- footer section --}}
@@ -130,7 +137,7 @@
       </div>
     </div>
   </div>
-  <script src="../public/javaScript/greetings.js"></script>
+  <script src="/javaScript/greetings.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

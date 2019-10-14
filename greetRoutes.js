@@ -16,6 +16,9 @@ module.exports = function(instanceForGreet) {
   async function addName(req, res) {
     if (req.body.language) {
       await instanceForGreet.add(req.body.nameInput, req.body.language);
+    } else {
+      instanceForGreet.clearGreeting();
+      req.flash("info", "Please select Language!");
     }
     res.redirect("/");
   }
@@ -38,7 +41,7 @@ module.exports = function(instanceForGreet) {
 
   async function delet(req, res) {
     await instanceForGreet.delete();
-    req.flash("info", "App has been reseted!");
+    req.flash("reset", "App has been restarted!");
     res.redirect("/");
   }
   return {

@@ -41,6 +41,7 @@ app.use(
   })
 );
 // app.use(toastr());
+app.use(flash());
 
 app.use(express.static("public"));
 var bodyParser = require("body-parser");
@@ -66,7 +67,6 @@ app.get("/greeted", Routes.greeted);
 app.get("/delete", Routes.delet);
 app.get("/user/:userName", Routes.countFor);
 
-app.use(flash());
 
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);
