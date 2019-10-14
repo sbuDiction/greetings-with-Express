@@ -3,8 +3,9 @@ const Greetings = require("../greet-manager/greet");
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://diction:19970823@localhost:5432/greetings_tests';
-
+const connectionString =
+  process.env.DATABASE_URL ||
+  "postgresql://diction:19970823@localhost:5432/greetings_tests";
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -20,7 +21,6 @@ const pool = new Pool({
 describe("Greet testing", function() {
   beforeEach(async function() {
     await pool.query("DELETE FROM greetings;");
-    // await pool.query("delete from userName;");
   });
 
   it("Should able to add a name to database  ", async function() {
@@ -96,6 +96,15 @@ describe("Greet testing", function() {
         await instanceOfGreet.add("sbu", "Zulu");
         let counter = await instanceOfGreet.userCount("Sbu");
         assert.equal(counter, 2);
+      });
+    });
+    describe("Reset database table Testing", function() {
+      it("Should be able to show the counter for each user that how many times there were greeted ", async function() {
+        let instanceOfGreet = Greetings(pool);
+        await instanceOfGreet.add("sbu", "Zulu");
+        await instanceOfGreet.add("sbu", "Zulu");
+        let reset = await instanceOfGreet.delete();
+        assert.equal(reset, "");
       });
     });
   });

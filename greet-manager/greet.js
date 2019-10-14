@@ -2,6 +2,7 @@ module.exports = function Greetings(pool) {
   let toCase = "";
   let greeting = "";
   let languageType = "";
+  let message = "";
 
   const clearGreeting = () => {
     greeting = "";
