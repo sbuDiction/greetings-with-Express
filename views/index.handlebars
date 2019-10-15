@@ -104,8 +104,8 @@
         </form>
         <div class="row reset justify-content-sm-center">
           <div class="col-6-sm">
-            <form action="/delete" method="get">
-              <button class="btn btn-outline-danger" type="submit">
+            <form action="/delete" method="get" onsubmit="return confirm('Are you sure you want to submit?');">
+              <button class=" btn btn-outline-danger" type="submit">
                 Reset app
               </button>
             </form>
