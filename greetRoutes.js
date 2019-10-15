@@ -1,12 +1,12 @@
-module.exports = function(instanceForGreet) {
+module.exports = function(instance) {
   async function index(req, res, next) {
     try {
-      let counter = await instanceForGreet.count();
+      let counter = await instance.count();
       res.render("index", {
         count: counter,
         title: "Greetings",
         dropdown: ["Zulu", "English", "Xhosa", "Afrikaans", "Tsonga"],
-        name: instanceForGreet.hello()
+        name: instance.hello()
       });
     } catch (err) {
       next(err);
@@ -18,13 +18,13 @@ module.exports = function(instanceForGreet) {
     let regex = /\d/;
     let test = regex.test(name);
     if (test === true) {
-      instanceForGreet.clearGreeting();
+      instance.clearGreeting();
       req.flash("info", "Please use letters only!");
     } else {
       if (req.body.language) {
-        await instanceForGreet.add(name, req.body.language);
+        await instance.add(name, req.body.language);
       } else {
-        instanceForGreet.clearGreeting();
+        instance.clearGreeting();
         req.flash("info", "Please select Language!");
       }
     }
@@ -33,8 +33,8 @@ module.exports = function(instanceForGreet) {
 
   async function countFor(req, res) {
     let name = req.params.userName;
-    let names = await instanceForGreet.who(req.params.userName);
-    let counter = await instanceForGreet.userCount(name);
+    let names = await instance.who(req.params.userName);
+    let counter = await instance.userCount(name);
     res.render("user", {
       isUser: name,
       count: counter
@@ -42,13 +42,13 @@ module.exports = function(instanceForGreet) {
   }
 
   async function greeted(req, res) {
-    let names = await instanceForGreet.names();
+    let names = await instance.names();
     console.log(names);
     res.render("greeted", { allnames: names });
   }
 
   async function delet(req, res) {
-    await instanceForGreet.delete();
+    await instance.delete();
     req.flash("reset", "App has been restarted!");
     res.redirect("/");
   }

@@ -26,11 +26,11 @@ const pool = new Pool({
   ssl: useSSL
 });
 
-const greetRoute = require("./greetRoutes");
-const greetings = require("./greet-manager/greet");
+const GreetingsRoutes = require("./greetRoutes");
+const Greetings = require("./greet-manager/greet");
 
-const instanceForGreet = greetings(pool);
-const Routes = greetRoute(instanceForGreet);
+const instance = Greetings(pool);
+const route = GreetingsRoutes(instance);
 
 app.use(cookieParser("secret"));
 app.use(
@@ -61,12 +61,11 @@ const handlebarSetup = exphbs({
 app.engine("handlebars", handlebarSetup);
 app.set("view engine", "handlebars");
 
-app.get("/", Routes.index);
-app.post("/greet", Routes.addName);
-app.get("/greeted", Routes.greeted);
-app.get("/delete", Routes.delet);
-app.get("/user/:userName", Routes.countFor);
-
+app.get("/", route.index);
+app.post("/greet", route.addName);
+app.get("/greeted", route.greeted);
+app.get("/delete", route.delet);
+app.get("/user/:userName", route.countFor);
 
 app.listen(PORT, function() {
   console.log("App started at port:", PORT);

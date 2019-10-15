@@ -1,41 +1,38 @@
 module.exports = function Greetings(pool) {
-  let toCase = "";
   let greeting = "";
   let languageType = "";
-  let message = "";
 
-  const clearGreeting = () => {
-    greeting = "";
-  };
+  async function getByName(name) {
+    let myQuery = `SELECT * FROM greetings WHERE username = '${name}'`;
+    let results =  await pool.query(myQuery);
+    return results.rows[0];
+  }
 
   async function add(name, language) {
-    toCase = name[0].toUpperCase() + name.slice(1);
+    let userName = name[0].toUpperCase() + name.slice(1);
+    console.log(await getByName(userName));
+    console.log(userName);
+
     let regex = /\d/;
-    let number = regex.test(toCase);
+    let number = regex.test(userName);
     if (number === false) {
       let data = await pool.query(
         "SELECT * FROM greetings WHERE userName = $1;",
-        [toCase]
+        [userName]
       );
       if (data.rowCount > 0) {
         for (let x = 0; x < data.rows.length; x++) {
           let username = data.rows[x].username;
-          if (username === toCase) {
+          if (username === userName) {
             data.rows[0].countTime;
-            const results = await pool.query(
-              "SELECT * FROM greetings WHERE userName = $1",
-              [toCase]
-            );
+            const results = data;
             if (results.rowCount > 0) {
-              const count = await pool.query(
-                "SELECT countTime FROM greetings WHERE userName = $1",
-                [toCase]
-              );
+              const count = data;
               let newCount = count.rows[0].counttime;
               newCount++;
               await pool.query(
                 "UPDATE greetings SET countTime = $1 WHERE userName = $2",
-                [newCount, toCase]
+                [newCount, userName]
               );
             }
           }
@@ -43,7 +40,7 @@ module.exports = function Greetings(pool) {
       } else {
         await pool.query(
           "INSERT INTO greetings (userName,countTime) VALUES ($1,$2);",
-          [toCase, 1]
+          [userName, 1]
         );
       }
     }
@@ -58,8 +55,12 @@ module.exports = function Greetings(pool) {
     } else if (language == "Xhosa") {
       languageType = "Molo, ";
     }
-    greeting = languageType + toCase;
+    greeting = languageType + userName;
   }
+
+  const clearGreeting = () => {
+    greeting = "";
+  };
 
   async function all() {
     let names = await pool.query("SELECT * FROM greetings;");
@@ -109,6 +110,7 @@ module.exports = function Greetings(pool) {
     count: keepCount,
     userCount: countFor,
     who: eachUser,
-    delete: clearData
+    delete: clearData,
+    getByName
   };
 };
