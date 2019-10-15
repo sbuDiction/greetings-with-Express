@@ -100,10 +100,9 @@
               Greet
             </button>
           </div>
-        </div>
-        </form>
-        <div class="row reset justify-content-sm-center">
-          <div class="col-6-sm">
+          </form>
+          {{!-- <div class="row reset justify-content-sm-center"> --}}
+          <div style="padding-left: 10px;" class="col-6-sm">
             <form action="/delete" method="get" onsubmit="return confirm('Are you sure you want to submit?');">
               <button class=" btn btn-outline-danger" type="submit">
                 Reset app
@@ -111,6 +110,7 @@
             </form>
           </div>
         </div>
+        {{!-- </div> --}}
         {{!-- <div class="">
           <div id="greet" style="display: none;lert alert-primary" class="greetMsg" role="alert">
             <span style="padding-left: 39%">{{name}}</span>
