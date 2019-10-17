@@ -1,11 +1,3 @@
-// $('.toast').toast(option)
-// $('.alert').alert()
-// $("#alert")
-//   .fadeIn("slow")
-//   .animate({ opacity: 1.0 }, 1500)
-//   .effect("pulsate", { times: 2 }, 800)
-//   .fadeOut("slow");
-
 $("#alert")
   .show()
   .delay(4000)

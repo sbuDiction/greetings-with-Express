@@ -3,7 +3,7 @@ module.exports = function Greetings(pool) {
   let languageType = "";
 
   async function getByName(name) {
-    let myQuery = `SELECT * FROM greetings WHERE username = '${name}'`;
+    let myQuery = "SELECT * FROM greetings WHERE username = '${name}'";
     let results = await pool.query(myQuery);
     return results.rows[0];
   }
