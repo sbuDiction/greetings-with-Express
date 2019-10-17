@@ -107,6 +107,5 @@ module.exports = function Greetings(pool) {
     who: eachUser,
     delete: clearData,
     getByName,
-    getAll
   };
 };
