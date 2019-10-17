@@ -58,7 +58,7 @@ module.exports = function Greetings(pool) {
   };
 
   async function all() {
-    let names = await all();
+    let names = await pool.query("SELECT * FROM greetings;");
     return names.rows;
   }
 
@@ -106,6 +106,6 @@ module.exports = function Greetings(pool) {
     userCount: countFor,
     who: eachUser,
     delete: clearData,
-    getByName,
+    getByName
   };
 };
