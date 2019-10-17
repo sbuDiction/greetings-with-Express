@@ -4,7 +4,7 @@ module.exports = function Greetings(pool) {
 
   async function getByName(name) {
     let myQuery = `SELECT * FROM greetings WHERE username = '${name}'`;
-    let results =  await pool.query(myQuery);
+    let results = await pool.query(myQuery);
     return results.rows[0];
   }
 
@@ -12,22 +12,19 @@ module.exports = function Greetings(pool) {
     let userName = name[0].toUpperCase() + name.slice(1);
     console.log(await getByName(userName));
     console.log(userName);
-
     let regex = /\d/;
     let number = regex.test(userName);
+
     if (number === false) {
-      let data = await pool.query(
-        "SELECT * FROM greetings WHERE userName = $1;",
-        [userName]
-      );
+      let data = getByName(userName);
       if (data.rowCount > 0) {
         for (let x = 0; x < data.rows.length; x++) {
           let username = data.rows[x].username;
           if (username === userName) {
             data.rows[0].countTime;
-            const results = data;
+            const results = getByName(userName);
             if (results.rowCount > 0) {
-              const count = data;
+              const count = getByName(userName);
               let newCount = count.rows[0].counttime;
               newCount++;
               await pool.query(
