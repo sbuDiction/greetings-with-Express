@@ -10,8 +10,6 @@ module.exports = function Greetings(pool) {
 
   async function add(name, language) {
     let userName = name[0].toUpperCase() + name.slice(1);
-    console.log(await getByName(userName));
-    console.log(userName);
     let regex = /\d/;
     let number = regex.test(userName);
 
@@ -60,7 +58,7 @@ module.exports = function Greetings(pool) {
   };
 
   async function all() {
-    let names = await pool.query("SELECT * FROM greetings;");
+    let names = await all();
     return names.rows;
   }
 
@@ -75,12 +73,12 @@ module.exports = function Greetings(pool) {
   }
 
   async function countFor(name) {
-    let nameList = await pool.query("SELECT * FROM greetings;");
+    let nameList = await all();
     let counted = 0;
-    for (let x = 0; x < nameList.rows.length; x++) {
-      let counter = nameList.rows[x].username;
+    for (let x = 0; x < nameList.length; x++) {
+      let counter = nameList[x].username;
       if (name === counter) {
-        let newNum = nameList.rows[x].counttime;
+        let newNum = nameList[x].counttime;
         counted = newNum;
       }
     }
@@ -88,9 +86,9 @@ module.exports = function Greetings(pool) {
   }
 
   async function eachUser(username) {
-    let nameList = await pool.query("SELECT * FROM greetings;");
-    let newArray = nameList.rows;
-    return newArray.filter(list => list.rows === username);
+    let nameList = await all();
+    let newArray = nameList;
+    return newArray.filter(list => list === username);
   }
 
   async function clearData() {
@@ -108,6 +106,7 @@ module.exports = function Greetings(pool) {
     userCount: countFor,
     who: eachUser,
     delete: clearData,
-    getByName
+    getByName,
+    getAll
   };
 };
