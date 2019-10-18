@@ -2,27 +2,26 @@ module.exports = function Greetings(pool) {
   let greeting = "";
   let languageType = "";
 
-  async function getByName(name) {
-    let myQuery = "SELECT * FROM greetings WHERE username = '${name}'";
-    let results = await pool.query(myQuery);
-    return results.rows[0];
-  }
-
   async function add(name, language) {
-    let userName = name[0].toUpperCase() + name.slice(1);
+    let userName = name.toUpperCase();
     let regex = /\d/;
     let number = regex.test(userName);
-
     if (number === false) {
-      let data = getByName(userName);
+      let data = await pool.query(
+        "SELECT * FROM greetings WHERE userName = $1;",
+        [userName]
+      );
       if (data.rowCount > 0) {
         for (let x = 0; x < data.rows.length; x++) {
           let username = data.rows[x].username;
           if (username === userName) {
             data.rows[0].countTime;
-            const results = getByName(userName);
+            const results = await data;
             if (results.rowCount > 0) {
-              const count = getByName(userName);
+              const count = await pool.query(
+                "SELECT countTime FROM greetings WHERE userName = $1",
+                [userName]
+              );
               let newCount = count.rows[0].counttime;
               newCount++;
               await pool.query(
@@ -105,7 +104,6 @@ module.exports = function Greetings(pool) {
     count: keepCount,
     userCount: countFor,
     who: eachUser,
-    delete: clearData,
-    getByName
+    delete: clearData
   };
 };
