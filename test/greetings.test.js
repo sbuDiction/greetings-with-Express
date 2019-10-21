@@ -53,31 +53,31 @@ describe("Greet testing", function() {
       let instanceOfGreet = Greetings(pool);
       await instanceOfGreet.add("sbu", "Zulu");
       let message = await instanceOfGreet.hello();
-      assert.equal(message, "Sawubona, Sbu");
+      assert.equal(message, "Sawubona, SBU");
     });
     it("Should be able to greet a user in if the the language selected is English  ", async function() {
       let instanceOfGreet = Greetings(pool);
       await instanceOfGreet.add("sbu", "English");
       let message = await instanceOfGreet.hello();
-      assert.equal(message, "Hello, Sbu");
+      assert.equal(message, "Hello, SBU");
     });
     it("Should be able to greet a user in if the the language selected is Afrikaans  ", async function() {
       let instanceOfGreet = Greetings(pool);
       await instanceOfGreet.add("sbu", "Afrikaans");
       let message = await instanceOfGreet.hello();
-      assert.equal(message, "Hallo, Sbu");
+      assert.equal(message, "Hallo, SBU");
     });
     it("Should be able to greet a user in if the the language selected is Tsonga  ", async function() {
       let instanceOfGreet = Greetings(pool);
       await instanceOfGreet.add("sbu", "English");
       let message = await instanceOfGreet.hello();
-      assert.equal(message, "Hello, Sbu");
+      assert.equal(message, "Hello, SBU");
     });
     it("Should be able to greet a user in if the the language selected is Xhosa  ", async function() {
       let instanceOfGreet = Greetings(pool);
       await instanceOfGreet.add("sbu", "Xhosa");
       let message = await instanceOfGreet.hello();
-      assert.equal(message, "Molo, Sbu");
+      assert.equal(message, "Molo, SBU");
     });
   });
   describe("Greet counter Testing", function() {
@@ -94,7 +94,7 @@ describe("Greet testing", function() {
         let instanceOfGreet = Greetings(pool);
         await instanceOfGreet.add("sbu", "Zulu");
         await instanceOfGreet.add("sbu", "Zulu");
-        let counter = await instanceOfGreet.userCount("Sbu");
+        let counter = await instanceOfGreet.userCount("SBU");
         assert.equal(counter, 2);
       });
     });
