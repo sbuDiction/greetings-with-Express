@@ -36,7 +36,7 @@
     "nodemon": "^1.19.3",
     "pg": "^7.12.1",
     "popper.js": "^1.15.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-bootstrap": "0.0.16"
   },
   "devDependencies": {
